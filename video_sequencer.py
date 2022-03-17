@@ -56,7 +56,6 @@ class VideoSequencerCmd(OpenMayaMPx.MPxCommand):
         cmds.textFieldGrp('Output Dir', text = self.output_dir[0],  editable = False)
 
     def select_camera(self, *args):
-        print(args)
         self.camera = args[0]
 
     def render_image_sequence(self,*args):
@@ -81,7 +80,7 @@ class VideoSequencerCmd(OpenMayaMPx.MPxCommand):
         cmds.button(label='Video', command=self.select_input_video)
         cmds.button(label='Output Directory', command=self.select_output_dir)
         cmds.optionMenu(label = 'Cameras', changeCommand = self.select_camera)
-        for camera in cmds.listCameras(p = True):
+        for camera in cmds.listCameras(o = True, p = True):
             cmds.menuItem(label=camera)
         cmds.button(label='Render Sequence', command=self.render_image_sequence)
         cmds.setParent('..')
